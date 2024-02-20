@@ -1,0 +1,2 @@
+# Horizon Abstraction Middleware 🚀
+Horizon Abstraction Middleware (HAM) serves as abstraction layer to streamline and enhance the development of rocket avionics, providing standardized user-friendly components. 
