@@ -2,6 +2,7 @@
 
 #include <IDebugPrint.hpp>
 #include <usart.h>
+#include <HAMTypes.hpp>
 
 namespace HAM
 {

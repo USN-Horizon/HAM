@@ -44,6 +44,24 @@ namespace HAM
          * @return Printer& 
          */
         template<typename T> inline Printer& operator <<(const T& input){m_printer->Print(std::to_string(input)); return *this;}
+        /**
+         * @brief Operator for providing what type of debug
+         * 
+         * Choosing a debug will append a categorization message
+         * Available options are: Log, Warning, Error
+         * Will output: [Log]: , [Warning]: , [Error]: 
+         * @code {.cpp}
+         *      Printer % PrintType::Log << "Something is logged";
+         * @endcode
+         * Will result in
+         * @code {.shell}
+         * [Log]: Something is logged
+         * @endcode
+         * 
+         * 
+         * @param type 
+         * @return Printer& 
+         */
         inline Printer& operator % (PrintType type){m_printer->Print(PrintTypeString[type]); return *this;}
         ~Printer() = default;
     };

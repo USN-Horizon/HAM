@@ -4,6 +4,9 @@ using namespace HAM;
 Uart::Uart(UART_HandleTypeDef& uart):
 m_uart{&uart}
 {
+  // TODO 
+  // Provide some error handling here
+  HAL_UART_Init(m_uart);
 }
 
 Uart::~Uart()
