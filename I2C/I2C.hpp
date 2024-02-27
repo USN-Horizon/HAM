@@ -6,11 +6,11 @@ namespace HAM
     class I2C
     {
     private:
-        I2C_HandleTypeDef* m_handle;
+        I2C_HandleTypeDef* m_handle{nullptr};
     public:
         I2C(I2C_HandleTypeDef* I2CDefinition);
-        bool Write(const byte& address, const byte buffer[]);
-
+        bool Write(const byte& address, byte& bytes, const size_t& size);
+        bool Read(const byte& address, byte& bytes, const size_t& size);
         ~I2C();
     };
 

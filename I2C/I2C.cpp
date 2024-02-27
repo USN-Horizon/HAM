@@ -9,11 +9,17 @@
             //Error handling
           }
     }
-    bool I2C::Write(const byte& address, const byte buffer[])
+    bool I2C::Write(const byte& address, byte& bytes, const size_t& size)
     {
-      
+        return HAL_I2C_Master_Transmit(m_handle, address, &bytes, static_cast<uint16_t>(size), HAL_MAX_DELAY) == HAL_OK;
+    }
+    bool I2C::Read(const byte& address, byte& bytes, const size_t& size)
+    {
+        return HAL_I2C_Master_Receive(m_handle, address, &bytes, size, HAL_MAX_DELAY) == HAL_OK;
     }
     
+    
+
     I2C::~I2C()
     {
     }
