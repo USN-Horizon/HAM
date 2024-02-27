@@ -5,6 +5,7 @@ Horizon Abstraction Middleware (HAM) serves as abstraction layer to streamline a
 ## Install
 ```shell
 winget install doxygen
+winget install graphviz
 ```
 Optional [extension](https://marketplace.visualstudio.com/items?itemName=cschlosser.doxdocgen) for vscode. 
 
