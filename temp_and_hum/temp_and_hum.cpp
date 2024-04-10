@@ -1,5 +1,5 @@
 #include "temp_and_hum.hpp"
-#include "hum.hpp"
+// #include "hum.hpp"
 
 void t_h_loop()
 {
