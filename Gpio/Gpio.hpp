@@ -6,7 +6,7 @@
 #include <gpio.h>
 #include <HAMTypes.hpp>
 namespace HAM{
-    static GPIO_InitTypeDef GpioDefaultInit{
+    const static GPIO_InitTypeDef GpioDefaultInit{
         .Mode = GPIO_MODE_INPUT,
         .Pull = GPIO_NOPULL
     };
@@ -18,7 +18,7 @@ namespace HAM{
         Pin m_pin;
     public:
         Gpio(const GpioPortPointer& gpioPort,  const GpioPin& pin);
-        Gpio(const Pin& pin, GPIO_InitTypeDef& config = GpioDefaultInit);
+        Gpio(const Pin& pin, const GPIO_InitTypeDef& config = GpioDefaultInit);
 
         ~Gpio();
         /**
