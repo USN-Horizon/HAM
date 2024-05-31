@@ -1,5 +1,6 @@
 #include "Barometer.hpp"
 #include "../I2C/I2C.hpp"
+#include <I2CBlocking.hpp>
 using namespace HAM;
 
 I2C_HandleTypeDef Barometer::defaultI2CDefinition
@@ -34,7 +35,7 @@ int Barometer::begin() {
     if (initialised) {
         return 0;
     }
-    I2CInstance = new I2C(&defaultI2CDefinition);
+    I2CInstance = new I2CBlocking(&defaultI2CDefinition);
 
     // Quit if adress dont lead to correct chip
     HAM::byte buf_who_am_i = readFromReg(REG_LPS22HB_WHOAMI);

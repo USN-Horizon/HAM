@@ -5,11 +5,12 @@ Gpio::Gpio(const GpioPortPointer& gpioPort, const GpioPin& pin):
    m_pin{Pin{gpioPort, pin}}
 {
 }
-Gpio::Gpio(const Pin& pin, GPIO_InitTypeDef& config):
+Gpio::Gpio(const Pin& pin, const GPIO_InitTypeDef& config):
    m_pin{pin}
 {
-    config.Pin = m_pin.pinNumber;
-    HAL_GPIO_Init(m_pin.port, &config);
+    GPIO_InitTypeDef tempConfig = config;
+    tempConfig.Pin = m_pin.pinNumber;
+    HAL_GPIO_Init(m_pin.port, &tempConfig);
 }
 Gpio::~Gpio()
 {
