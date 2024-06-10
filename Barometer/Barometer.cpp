@@ -2,7 +2,6 @@
 #include "../I2C/I2C.hpp"
 #include <I2CBlocking.hpp>
 using namespace HAM;
-
 I2C_HandleTypeDef Barometer::defaultI2CDefinition
 {
     .Instance = I2C1,
@@ -21,12 +20,12 @@ I2C_HandleTypeDef Barometer::defaultI2CDefinition
 
 void Barometer::writeToReg(HAM::byte reg, HAM::byte data) const {
     HAM::byte reg_n_data[2] = {reg, data};
-    I2CInstance->Write((REG_LPS22HB_ADR<<1),reg_n_data,2);
+    I2CInstance->WriteBlocking((REG_LPS22HB_ADR<<1),reg_n_data,2);
 }
 HAM::byte Barometer::readFromReg(HAM::byte reg) const {
     HAM::byte read_data;
-    I2CInstance->Write((REG_LPS22HB_ADR<<1),&reg,1);
-    I2CInstance->Read((REG_LPS22HB_ADR<<1),&read_data,1);
+    I2CInstance->WriteBlocking((REG_LPS22HB_ADR<<1),&reg,1);
+    I2CInstance->ReadBlocking((REG_LPS22HB_ADR<<1),&read_data,1);
     return read_data;
 }
 
@@ -35,7 +34,7 @@ int Barometer::begin() {
     if (initialised) {
         return 0;
     }
-    I2CInstance = new I2CBlocking(&defaultI2CDefinition);
+    I2CInstance = new I2C(defaultI2CDefinition);
 
     // Quit if adress dont lead to correct chip
     HAM::byte buf_who_am_i = readFromReg(REG_LPS22HB_WHOAMI);
