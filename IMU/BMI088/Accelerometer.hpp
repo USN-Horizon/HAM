@@ -3,6 +3,7 @@
 #include <IAccelerometer.hpp>
 #include <I2C.hpp>
 #include "Registers.hpp"
+#include <Debug.hpp>
 namespace HAM
 {
     namespace BMI088
@@ -13,9 +14,9 @@ namespace HAM
         private:
             I2C* m_i2c;
             byte m_address;
-            float m_xyz[3];
-            byte m_buffer[6];
-            float m_accelerationConversion;
+            float m_xyz[3] = {0};
+            byte m_buffer[6] = {0};
+            float m_accelerationConversion{0.1};
         public:
             struct Config
             {
@@ -30,6 +31,7 @@ namespace HAM
             void setInterruptPin(const byte pin, const InterruptPin::Config& config);
             bool startReading() final;
             void onReadingComplete() final;
+            void BlockingRead();
             // void onNewReadingAvailable() final;
             float X() final;
             float Y() final;

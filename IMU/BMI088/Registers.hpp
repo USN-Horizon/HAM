@@ -33,9 +33,9 @@ namespace HAM
                 {
                     struct
                     {
-                        byte reserved: 1;
-                        byte acc_bwp: 3;
                         byte acc_odr: 4;
+                        byte acc_bwp: 3;
+                        byte reserved: 1;
                     } Fields;
                     byte Value;
                 };
@@ -54,8 +54,8 @@ namespace HAM
                 {
                     struct
                     {
-                        byte reserved: 6;
                         byte acc_range: 2;
+                        byte reserved: 6;
                     } Fields;
                     byte Value;
                 };
@@ -172,6 +172,11 @@ namespace HAM
             //     static const uint8_t ACC_ACCEL_DATA_ADDR = 0x12;
             //     static const uint8_t ACC_TEMP_DATA_ADDR = 0x22;
             // }
+            namespace ACC_PWR_CONF
+            {
+                const static byte Address = 0x7C;
+            } // namespace name
+            
      
         }
         namespace GyroscopeRegisters

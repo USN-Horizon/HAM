@@ -1,5 +1,4 @@
 #pragma once
-#define DEBUG 1
 
 #include "../Debug/Debug.hpp"
 #include "../I2C/I2C.hpp"

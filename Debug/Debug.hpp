@@ -1,8 +1,9 @@
 #pragma once
 #include "Uart.hpp"
-
+#include <bitset>
+#define DEBUG 1
 #ifdef DEBUG
-UART_HandleTypeDef DebugUSBUartDefinition
+static UART_HandleTypeDef DebugUSBUartDefinition
 {
     .Instance = USART1,
     .Init{
@@ -14,9 +15,11 @@ UART_HandleTypeDef DebugUSBUartDefinition
         .OverSampling = UART_OVERSAMPLING_16,
     }
 };
-HAM::Uart DebugUart{DebugUSBUartDefinition};
+static HAM::Uart DebugUart{DebugUSBUartDefinition};
 
 #define DebugPrint(VAR1) DebugUart.Print(VAR1) 
+#define DebugPrintBinary(VAR1, N) DebugUart.Print(std::bitset<N>(VAR1).to_string())
 #else
 #define DebugPrint(VAR1)
+#define DebugPrintBinary(VAR1, N) 
 #endif

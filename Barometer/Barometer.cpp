@@ -1,6 +1,6 @@
 #include "Barometer.hpp"
 #include "../I2C/I2C.hpp"
-#include <I2CBlocking.hpp>
+#define DEBUG 0
 using namespace HAM;
 I2C_HandleTypeDef Barometer::defaultI2CDefinition
 {
@@ -28,7 +28,6 @@ HAM::byte Barometer::readFromReg(HAM::byte reg) const {
     I2CInstance->ReadBlocking((REG_LPS22HB_ADR<<1),&read_data,1);
     return read_data;
 }
-
 // using separate function to establish chip, since it can fail.
 int Barometer::begin() {
     if (initialised) {
@@ -39,7 +38,7 @@ int Barometer::begin() {
     // Quit if adress dont lead to correct chip
     HAM::byte buf_who_am_i = readFromReg(REG_LPS22HB_WHOAMI);
     if(buf_who_am_i != 0xb1) {
-        DebugPrint("LPS22HB's 'Who am I' was not expected value.");
+        DebugPrint("LPS22HB's 'Who am I' was not expected value.\n");
         return 1;
     }
 

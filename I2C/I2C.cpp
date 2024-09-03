@@ -1,16 +1,15 @@
 #include "I2C.hpp"
-
 using namespace HAM;
 
 I2C::I2C(I2C_HandleTypeDef& I2CDefinition):
 m_handle{&I2CDefinition}
 {
 
-      // if (HAL_I2C_Init(m_handle) != HAL_OK)
-      // {
-      //   DebugPrint("I2C Init failed\n");
-      //   //Error handling
-      // }
+      if (HAL_I2C_Init(m_handle) != HAL_OK)
+      {
+        DebugPrint("I2C Init failed\n");
+        //Error handling
+      }
 }
 HAL_StatusTypeDef I2C::WriteBlocking(const byte& address, byte* bytes, const size_t& size)
 {
@@ -41,7 +40,7 @@ HAL_StatusTypeDef I2C::ReadBlocking(const byte& address, byte* bytes, const size
  */
 HAL_StatusTypeDef I2C::WriteRegisterBlocking(const byte& address, byte& registerAddress, byte* bytes, const size_t& size)
 {
-  // byte byteSequence[] = {registerAddress, }
+  // byte byteSequence[] = {registerAddress, };
   // HAL_StatusTypeDef status = WriteBlocking(address, &registerAddress, 1);
   
 }
@@ -67,10 +66,13 @@ HAL_StatusTypeDef I2C::ReadBlockingByte(const byte& address, byte& byteToReceive
   return HAL_I2C_Master_Receive(m_handle, address, &byteToReceive, 1, HAL_MAX_DELAY);
 }
 HAL_StatusTypeDef I2C::WriteAsync(const byte& address, byte* bytes, 
-                                  const size_t& size, const I2C::Callback& callbackFunction)
+                                  const size_t& size)
 {
-  m_onWriteAsyncComplete = {callbackFunction};
-  return HAL_I2C_Master_Transmit_DMA(m_handle, address, bytes, size);
+  //m_onWriteAsyncComplete = {callbackFunction};
+ //HAL_I2C_Master_Transmit_DMA(m_handle, address, bytes, size);
+//  while (GetHandle()->State != HAL_I2C_STATE_READY);
+ 
+  return HAL_OK;
 }
 HAL_StatusTypeDef I2C::ReadAsync(const byte& address, byte* bytes, 
                                  const size_t& size, const I2C::Callback& callbackFunction)

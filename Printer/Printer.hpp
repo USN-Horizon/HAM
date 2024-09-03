@@ -10,7 +10,7 @@ namespace HAM
         Warning,
         Error
     };
-    const char* PrintTypeString[] = {"[Log]: ", "[Warning]: ", "[Error]: "};
+    static const char* PrintTypeString[] = {"[Log]: ", "[Warning]: ", "[Error]: "};
     /**
      * @brief Wrapper class to abstract Print implementation.
      * 

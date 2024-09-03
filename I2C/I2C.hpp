@@ -32,8 +32,8 @@ namespace HAM
 
 
         // Non-blocking
-        HAL_StatusTypeDef WriteAsync(const byte& address, byte* bytes, const size_t& size, 
-                                    const I2C::Callback& callbackFunction);
+        HAL_StatusTypeDef WriteAsync(const byte& address, byte* bytes, const size_t& size 
+                                    );
         HAL_StatusTypeDef ReadAsync(const byte& address, byte* bytes, const size_t& size, 
                                     const I2C::Callback& callbackFunction);
 
@@ -44,7 +44,7 @@ namespace HAM
             if(m_onReadAsyncComplete)m_onReadAsyncComplete();
             };
         const bool Busy () const;
-        const I2C_HandleTypeDef* GetHandle() const{return m_handle;};
+        I2C_HandleTypeDef* GetHandle() const{return m_handle;};
 
         // HAL_StatusTypeDef Write(const byte& address, std::vector<byte>& bytes);
         // HAL_StatusTypeDef Read(const byte& address, std::vector<byte>& bytes);
